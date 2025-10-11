@@ -22,7 +22,7 @@ int main()
         std::cin >> columns;
 
         std::cout << "How many mines do you want in the grid (only as much as spaces the grid has please): ";
-        std::cin >> mines;
+        std::cin >> mines; 
 
     } while (rows > 10 || rows < 2 || columns > 10 || columns < 2);
 

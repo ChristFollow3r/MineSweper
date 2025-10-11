@@ -9,8 +9,8 @@ int main()
     int columns;
     int mines;
     const int maxRows = 10;
-    const int maxColumns = 10; // Kinda dumb tbh
-    char grid[maxRows][maxColumns];  // So I checked what I had to do for the homework and turns out this is bad. (My teacher also talked about this but I wasnt paying attention to him :))
+    const int maxColumns = 10; 
+    char grid[maxRows][maxColumns];  
    
     // Ask the user how many rows and columns.
     do

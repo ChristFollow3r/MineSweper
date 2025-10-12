@@ -23,8 +23,12 @@ int main()
         std::cout << "How many columns do you want the game to have (min 2, max 10): ";
         std::cin >> columns;
 
-        std::cout << "How many mines do you want in the grid (only as much as spaces the grid has please): "; // Fix this (if the user enters more bombs than space has the grid the game will break).
-        std::cin >> mines; 
+        do
+        {
+            std::cout << "How many mines do you want in the grid (only as much as spaces the grid has please): "; // Fix this (if the user enters more bombs than space has the grid the game will break).
+            std::cin >> mines;
+
+        } while (mines > rows * columns || mines == 0);
 
     } while (rows > 10 || rows < 2 || columns > 10 || columns < 2);
 

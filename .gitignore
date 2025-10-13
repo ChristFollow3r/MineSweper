@@ -2,9 +2,6 @@ x64/
 Minesweeper/x64/
 *.vcxproj.user
 !.gitignore
-<<<<<<< HEAD
-!*.cpp
-!*.sln
-=======
 .vs/
->>>>>>> 9d8be7c (Updated the gitignore)
+
+

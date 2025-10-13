@@ -15,30 +15,31 @@ int main()
 
    
     // Ask the user how many rows and columns.
+
     do
     {
-        std::cout << "How many rows do you want the game to have (min 2, max 10): ";
+        std::cout << "How many rows do you want the game to have (min 2, max 10): "; // If the user enters a char the game will break.
         std::cin >> rows;
 
-        std::cout << "How many columns do you want the game to have (min 2, max 10): ";
+        std::cout << "How many columns do you want the game to have (min 2, max 10): "; // If the user enters a char the game will break.
         std::cin >> columns;
 
         do
         {
-            std::cout << "How many mines do you want in the grid (only as much as spaces the grid has please): "; // Fix this (if the user enters more bombs than space has the grid the game will break).
-            std::cin >> mines;
+            std::cout << "How many mines do you want in the grid (only as much as spaces the grid has please): "; 
+            std::cin >> mines; // If the user enters 1 billion mines the game will break.
 
-        } while (mines > rows * columns || mines == 0);
+        } while (mines > rows * columns || mines <= 0);
 
     } while (rows > 10 || rows < 2 || columns > 10 || columns < 2);
 
     //Create the grid.
     
-    for (int i = 0; i < rows; i++)  // This defines the grid I think.
+    for (int i = 0; i < rows; i++)  // This defines the grid.
     {
         for (int j = 0; j < columns; j++)
         {
-            grid[i][j] = '#'; //Bruh
+            grid[i][j] = '#';
         }
 
     }
@@ -58,7 +59,7 @@ int main()
 
     std::srand(time(0)); 
   
-    for (size_t placedMines = 0; placedMines < mines;) // I should've done this with a while loop but its already done so it's staying like this
+    for (size_t placedMines = 0; placedMines < mines;) // I should've done this with a while loop but its already done so it's staying like this cause it's my little baby :)
 
     {
             int x = rand() % rows;
@@ -74,11 +75,12 @@ int main()
     }
     
     // This prints the grid!
+
     bool iThinkINeedABoool = true;
 
     for (size_t i = 0; i < rows; i++) 
     {
-        switch (i)
+        switch (i) // Ask the teacher (should I not do this switch (since chat gpt told me I could've just did (char whatever = 'a' + i) std::cout << "Whatever";) or keep it cause it's my little baby).
         {
         case 0:
             break;
@@ -135,9 +137,7 @@ int main()
         std::cout << std::endl; // So far so good :)
 
     }
-    
-    // I think I did not
-    // I have to make a row of numbers and a row of letters above the grid so the player can properly check for mines.
+   
     // Reveal mines mechanic.
     // The user can't play the game!
     // Show all mines at the end.

@@ -74,11 +74,24 @@ int main()
     }
     
     // This prints the grid!
+    bool iThinkINeedABoool = true;
 
     for (size_t i = 0; i < rows; i++) 
     {
+       
+         
         for (size_t j = 0; j < columns; j++)
-        {
+        { 
+            while (iThinkINeedABoool == true)
+            {
+                for (size_t h = 0; h < columns; h++)
+                {
+                    std::cout << h + 1;
+                }
+                std::cout << std::endl;
+                iThinkINeedABoool = false;
+                continue;
+            }
             std::cout << visibleGrid[i][j];
         }
         std::cout << std::endl; // So far so good :)

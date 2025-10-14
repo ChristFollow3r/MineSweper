@@ -141,6 +141,7 @@ int main()
     bool alive = true;
     int uColumn;
     char uRow;
+    int iNeedACounter = 0;
 
     while (alive)
     {
@@ -165,6 +166,14 @@ int main()
         else if (grid[uRow - 97][uColumn] == '#')
         {
             grid[uRow - 97][uColumn] = '.';
+            visibleGrid[uRow - 97][uColumn] = '.';
+            iNeedACounter++;
+
+            if (iNeedACounter == (columns * rows) - mines)
+            {
+                std::cout << "You win!";
+                alive = false;
+            }
         }
 
       
@@ -176,7 +185,7 @@ int main()
 
     std::cout << "No more playing for you! Go touch some grass."; // I really dont want to do another loop, so no more playing.
     
-    // I used IA to help me spot errors in my code, but not to fix them.
+    // I used IA to help me spot errors in my code, but not to fix them (at least so far).
     
 
 } 

@@ -170,10 +170,11 @@ int main()
 
             }
             
+            alive = false;
         }
 
 
-        else if (grid[uRow - 97][uColumn] == '#')
+        else if (grid[uRow - 97][uColumn] == '#') 
         {
             grid[uRow - 97][uColumn] = '.';
             visibleGrid[uRow - 97][uColumn] = '.';

@@ -185,6 +185,15 @@ int main()
                 std::cout << "You win!";
                 alive = false;
             }
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    std::cout << visibleGrid[i][j];
+                }
+
+            }
         }
 
       

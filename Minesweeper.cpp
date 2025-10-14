@@ -160,6 +160,16 @@ int main()
         if(grid[uRow - 97][uColumn] == '*') // Chat gpt told me that I did this backwards so now it's as it should be.
         {
             std::cout << "You're dead!";
+
+            for (int i = 0; i < rows; i++) 
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    std::cout << grid[i][j];
+                }
+
+            }
+            
         }
 
 

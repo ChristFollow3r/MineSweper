@@ -137,16 +137,54 @@ int main()
         std::cout << std::endl; // So far so good :)
 
     }
-   
-    // Reveal mines mechanic.
-    // The user can't play the game!
-    // Show all mines at the end.
+
+    bool alive = true;
+    int uColumn;
+    char uRow;
+
+    while (alive)
+    {
+        do
+        {
+            std::cout << "Enter the column: ";
+            std::cin >> uColumn;
+        } while (uColumn < 0 || uColumn > columns); 
+
+        do
+        {
+            std::cout << "Enter the row: ";
+            std::cin >> uRow;
+        } while (uRow < 97 || uRow >= 97 + rows);
+
+        if(grid[uRow - 97][uColumn] == '*') // Chat gpt told me that I did this backwards so now it's as it should be.
+        {
+            std::cout << "You're dead!";
+        }
+
+
+        else if (grid[uRow - 97][uColumn] == '#')
+        {
+            grid[uRow - 97][uColumn] = '.';
+        }
+
+      
+    }
+
+
+  
+
+
+    std::cout << "No more playing for you! Go touch some grass."; // I really dont want to do another loop, so no more playing.
     
-    // Enough for today :V
-
-
-
-
+    // I used IA to help me spot errors in my code, but not to fix them.
+    
 
 } 
+
+
+        
+    
+
+
+ 
 

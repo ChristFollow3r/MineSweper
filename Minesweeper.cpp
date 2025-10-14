@@ -28,6 +28,7 @@ int main()
         {
             std::cout << "How many mines do you want in the grid (only as much as spaces the grid has please): "; 
             std::cin >> mines; // If the user enters 1 billion mines the game will break.
+            std::cout << "\n";
 
         } while (mines > rows * columns || mines <= 0);
 
@@ -145,6 +146,8 @@ int main()
 
     while (alive)
     {
+        std::cout << "\n";
+
         do
         {
             std::cout << "Enter the column: ";
@@ -155,20 +158,23 @@ int main()
         {
             std::cout << "Enter the row: ";
             std::cin >> uRow;
+            std::cout << "\n";
         } while (uRow < 97 || uRow >= 97 + rows);
 
         if(grid[uRow - 97][uColumn] == '*') // Chat gpt told me that I did this backwards so now it's as it should be.
         {
-            std::cout << "You're dead!";
+            std::cout << "You're dead!\n";
 
             for (int i = 0; i < rows; i++) 
             {
                 for (int j = 0; j < columns; j++)
                 {
                     std::cout << grid[i][j];
-                }
+                }std::cout << "\n";
 
             }
+
+            std::cout << "\n";
             
             alive = false;
         }
@@ -183,17 +189,72 @@ int main()
             if (iNeedACounter == (columns * rows) - mines)
             {
                 std::cout << "You win!";
+                std::cout << "\n";
                 alive = false;
             }
 
-            for (int i = 0; i < rows; i++)
+            iThinkINeedABoool = true;
+
+            for (size_t i = 0; i < rows; i++)
             {
-                for (int j = 0; j < columns; j++)
+                switch (i) // Ask the teacher (should I not do this switch (since chat gpt told me I could've just did (char whatever = 'a' + i) std::cout << "Whatever";) or keep it cause it's my little baby).
                 {
+                case 0:
+                    break;
+                case 1:
+                    std::cout << "b";
+                    break;
+                case 2:
+                    std::cout << "c";
+                    break;
+                case 3:
+                    std::cout << "d";
+                    break;
+                case 4:
+                    std::cout << "e";
+                    break;
+                case 5:
+                    std::cout << "f";
+                    break;
+                case 6:
+                    std::cout << "g";
+                    break;
+                case 7:
+                    std::cout << "h";
+                    break;
+                case 8:
+                    std::cout << "i";
+                    break;
+                case 9:
+                    std::cout << "j";
+                    break;
+                }
+
+                for (size_t j = 0; j < columns; j++)
+                {
+                    while (iThinkINeedABoool == true)
+                    {
+                        for (size_t h = 0; h < columns; h++)
+                        {
+                            if (h == 0)
+                            {
+                                std::cout << " ";
+                            }
+
+                            std::cout << h;
+                        }
+                        std::cout << std::endl;
+                        std::cout << "a";
+                        iThinkINeedABoool = false;
+                        continue;
+                    }
                     std::cout << visibleGrid[i][j];
                 }
 
+                std::cout << std::endl; // So far so good :)
+
             }
+            
         }
 
       
@@ -204,6 +265,7 @@ int main()
 
 
     std::cout << "No more playing for you! Go touch some grass."; // I really dont want to do another loop, so no more playing.
+    std::cout << "\n";
     
     // I used IA to help me spot errors in my code, but not to fix them (at least so far).
     

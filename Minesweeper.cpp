@@ -88,19 +88,18 @@ int main()
         {
             mineCount = 0;
 
+            if (grid[i][j] == '*')
+
+            {
+                continue;
+            }
+
             for (int x = i - 1; x < i + 2; x++) // Now makes more sense. So it will check (lets say i and j is 1) -> [0][1] [1][1] [2][1]
             {
                 for (int y = j - 1; y < j + 2; y++) // Same
                 {
-                    if (grid[i][j] == '*') // This because we don't want to check if there are mines around mines, since if the user checks an index where there's a mine he'll die (not irl).
+                    
 
-                    {
-                        continue;
-                    }
-
-
-                    else
-                    {
                         if (x < 0 || x >= rows || y < 0 || y >= columns)
                         {
                             continue;
@@ -115,8 +114,6 @@ int main()
                         }
 
 
-
-                    }
                 }
             }
 
@@ -222,9 +219,9 @@ int main()
             std::cin >> uRow;
             std::cout << "\n";
 
-        } while (uRow < 97 || uRow >= 97 + rows);
+        } while (uRow < 'a' || uRow >= 'a' + rows);
 
-        if (grid[uRow - 97][uColumn] == '*') // Chat gpt told me that I did this backwards so now it's as it should be.
+        if (grid[uRow - 'a'][uColumn] == '*') // Chat gpt told me that I did this backwards so now it's as it should be.
         {
             std::cout << "You're dead!\n";
             std::cout << "\n";
@@ -244,10 +241,10 @@ int main()
         }
 
 
-        else if (grid[uRow - 97][uColumn] != '*')  // I think now
+        else if (grid[uRow - 'a'][uColumn] != '*')  // I think now
         {
 
-            visibleGrid[uRow - 97][uColumn] = grid[uRow - 97][uColumn];  // Making changes
+            visibleGrid[uRow - 'a'][uColumn] = grid[uRow - 'a'][uColumn];  // Making changes
             iNeedACounter++;
 
             if (iNeedACounter == (columns * rows) - mines)

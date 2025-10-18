@@ -223,7 +223,7 @@ int main()
             std::cin >> uRow;
             std::cout << "\n";
 
-        } while (uRow < 97 || uRow >= 97 + rows);
+        } while (uRow < 'a' || uRow >= 'a' + rows);
 
         if(grid[uRow - 97][uColumn] == '*') // Chat gpt told me that I did this backwards so now it's as it should be.
         {
@@ -245,10 +245,10 @@ int main()
         }
 
 
-        else if (grid[uRow - 97][uColumn] != '*')  // I think now
+        else if (grid[uRow - 'a'][uColumn] != '*')  // I think now
         {
             
-            visibleGrid[uRow - 97][uColumn] = grid[uRow - 97][uColumn];  // Making changes
+            visibleGrid[uRow - 'a'][uColumn] = grid[uRow - 'a'][uColumn];  // Making changes
             iNeedACounter++;
 
             if (iNeedACounter == (columns * rows) - mines)

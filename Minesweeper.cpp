@@ -124,7 +124,12 @@ int main()
                 if (mineCount > 0)
 
                 {
-                    grid[i][j] = mineCount;
+                    grid[i][j] = mineCount + '0'; // Chat gpt told me to + 0 
+                }
+
+                else if (mineCount == 0)
+                {
+                    grid[i][j] = '.';
                 }
             
         }
@@ -209,13 +214,15 @@ int main()
         {
             std::cout << "Enter the column: ";
             std::cin >> uColumn;
-        } while (uColumn < 0 || uColumn > columns); 
+
+        } while (uColumn < 0 || uColumn >= columns); 
 
         do
         {
             std::cout << "Enter the row: ";
             std::cin >> uRow;
             std::cout << "\n";
+
         } while (uRow < 97 || uRow >= 97 + rows);
 
         if(grid[uRow - 97][uColumn] == '*') // Chat gpt told me that I did this backwards so now it's as it should be.
@@ -238,10 +245,10 @@ int main()
         }
 
 
-        else if (grid[uRow - 97][uColumn] == '#') 
+        else if (grid[uRow - 97][uColumn] != '*')  // I think now
         {
-            grid[uRow - 97][uColumn] = '.';
-            visibleGrid[uRow - 97][uColumn] = '.';
+            
+            visibleGrid[uRow - 97][uColumn] = grid[uRow - 97][uColumn];  // Making changes
             iNeedACounter++;
 
             if (iNeedACounter == (columns * rows) - mines)

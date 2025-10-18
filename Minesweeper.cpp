@@ -245,11 +245,34 @@ int main()
         }
 
 
-        else if (grid[uRow - 'a'][uColumn] != '*')  // I think now
+        else if (grid[uRow - 'a'][uColumn] != '*')  // No more magic numbers!
         {
             
-            visibleGrid[uRow - 'a'][uColumn] = grid[uRow - 'a'][uColumn];  // Making changes
-            iNeedACounter++;
+            if (grid[uRow - 'a'][uColumn] == '.') // YOU ARE CHANGING THIS DUMASS *************************************************************************************************************************************
+            {
+                for (int x = uRow - 1; x < uRow + 2; x++)
+                {
+                    for (int y = uColumn - 1; y < uColumn + 2; y++)
+                    {
+                        if(x < 0 || x >= rows || y < 0 || y >= columns)
+                        {
+                            continue;
+                        }
+
+                        else
+                        {
+                            visibleGrid[x][y] = '.';
+                        }
+                    }
+                }
+            }
+
+            else
+
+            {
+                visibleGrid[uRow - 'a'][uColumn] = grid[uRow - 'a'][uColumn]; // If this index isn't a bomb it displays how many mines are around it.
+                iNeedACounter++;
+            }
 
             if (iNeedACounter == (columns * rows) - mines)
             {
@@ -259,6 +282,8 @@ int main()
             }
 
             iThinkINeedABoool = true;
+
+            // Would be cool to add somehting that empties the console so that it looks as if the grid was updating itself.
 
             for (size_t i = 0; i < rows; i++)
             {
@@ -318,7 +343,7 @@ int main()
 
                 std::cout << std::endl; // So far so good :)
 
-            }
+            } 
             
         }
 

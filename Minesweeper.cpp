@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -9,11 +8,11 @@ int main()
     int columns;
     int mines;
     const int maxRows = 10;
-    const int maxColumns = 10; 
+    const int maxColumns = 10;
     char grid[maxRows][maxColumns];
-    char visibleGrid[maxRows][maxColumns]; 
+    char visibleGrid[maxRows][maxColumns];
 
-   
+
     // Ask the user how many rows and columns.
 
     do
@@ -26,7 +25,7 @@ int main()
 
         do
         {
-            std::cout << "How many mines do you want in the grid (only as much as spaces the grid has please): "; 
+            std::cout << "How many mines do you want in the grid (only as much as spaces the grid has please): ";
             std::cin >> mines; // If the user enters 1 billion mines the game will break.
             std::cout << "\n";
 
@@ -35,7 +34,7 @@ int main()
     } while (rows > 10 || rows < 2 || columns > 10 || columns < 2);
 
     //Create the grid.
-    
+
     for (int i = 0; i < rows; i++)  // This defines the grid.
     {
         for (int j = 0; j < columns; j++)
@@ -47,37 +46,37 @@ int main()
 
     // Visible grid
 
-    for (int i = 0; i < rows; i++)  
+    for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < columns; j++)
         {
-           visibleGrid[i][j] = '#'; 
+            visibleGrid[i][j] = '#';
         }
 
     }
 
     //Nukes
 
-    std::srand(time(0)); 
-  
+    std::srand(time(0));
+
     for (size_t placedMines = 0; placedMines < mines;) // I should've done this with a while loop but its already done so it's staying like this cause it's my little baby :)
 
     {
-            int x = rand() % rows;
-            int y = rand() % columns;
+        int x = rand() % rows;
+        int y = rand() % columns;
 
         if (grid[x][y] != '*')
 
         {
-            grid[x][y] = '*'; 
+            grid[x][y] = '*';
             placedMines++;
 
-           
-        }      
+
+        }
 
     }
 
-	// Count how many mines are around each cell. 
+    // Count how many mines are around each cell. 
 
     int mineCount = 0;
 
@@ -89,59 +88,59 @@ int main()
         {
             mineCount = 0;
 
-                for (int x = i -1; x < i + 2; x++) // Now makes more sense. So it will check (lets say i and j is 1) -> [0][1] [1][1] [2][1]
+            for (int x = i - 1; x < i + 2; x++) // Now makes more sense. So it will check (lets say i and j is 1) -> [0][1] [1][1] [2][1]
+            {
+                for (int y = j - 1; y < j + 2; y++) // Same
                 {
-                    for (int y = j - 1; y < j + 2; y++) // Same
-                    {
-                        if (grid[i][j] == '*') // This because we don't want to check if there are mines around mines, since if the user checks an index where there's a mine he'll die (not irl).
+                    if (grid[i][j] == '*') // This because we don't want to check if there are mines around mines, since if the user checks an index where there's a mine he'll die (not irl).
 
+                    {
+                        continue;
+                    }
+
+
+                    else
+                    {
+                        if (x < 0 || x >= rows || y < 0 || y >= columns)
                         {
                             continue;
                         }
 
-
-                        else
+                        else if (grid[x][y] == '*') // This is checking if indexs around the grid[i][j] are bombs (I Think). If x or y are out of bounds it won't do the counting.
                         {
-                            if (x < 0 || x >= rows || y < 0 || y >= columns)
-                            {
-                                continue;
-                            }
-                          
-                            else if (grid[x][y] == '*') // This is checking if indexs around the grid[i][j] are bombs (I Think). If x or y are out of bounds it won't do the counting.
-                            {
-                                                                                                       
-                                mineCount++;                                 
 
-                                // Now we gotta display this number when the user checks an index where there's no bomb.
-                            }                           
-                            
-                            
+                            mineCount++;
 
+                            // Now we gotta display this number when the user checks an index where there's no bomb.
                         }
+
+
+
                     }
                 }
+            }
 
-                if (mineCount > 0)
+            if (mineCount > 0)
 
-                {
-                    grid[i][j] = mineCount + '0'; // Chat gpt told me to + 0 
-                }
+            {
+                grid[i][j] = mineCount + '0'; // Chat gpt told me to + 0 
+            }
 
-                else if (mineCount == 0)
-                {
-                    grid[i][j] = '.';
-                }
-            
+            else if (mineCount == 0)
+            {
+                grid[i][j] = '.';
+            }
+
         }
 
 
     }
-    
+
     // This prints the grid!
 
     bool iThinkINeedABoool = true;
 
-    for (size_t i = 0; i < rows; i++) 
+    for (size_t i = 0; i < rows; i++)
     {
         switch (i) // Ask the teacher (should I not do this switch (since chat gpt told me I could've just did (char whatever = 'a' + i) std::cout << "Whatever";) or keep it cause it's my little baby).
         {
@@ -175,9 +174,9 @@ int main()
             std::cout << "j";
             break;
         }
-         
+
         for (size_t j = 0; j < columns; j++)
-        { 
+        {
             while (iThinkINeedABoool == true)
             {
                 for (size_t h = 0; h < columns; h++)
@@ -215,7 +214,7 @@ int main()
             std::cout << "Enter the column: ";
             std::cin >> uColumn;
 
-        } while (uColumn < 0 || uColumn >= columns); 
+        } while (uColumn < 0 || uColumn >= columns);
 
         do
         {
@@ -223,14 +222,14 @@ int main()
             std::cin >> uRow;
             std::cout << "\n";
 
-        } while (uRow < 'a' || uRow >= 'a' + rows);
+        } while (uRow < 97 || uRow >= 97 + rows);
 
-        if(grid[uRow - 97][uColumn] == '*') // Chat gpt told me that I did this backwards so now it's as it should be.
+        if (grid[uRow - 97][uColumn] == '*') // Chat gpt told me that I did this backwards so now it's as it should be.
         {
             std::cout << "You're dead!\n";
             std::cout << "\n";
 
-            for (int i = 0; i < rows; i++) 
+            for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
@@ -240,39 +239,16 @@ int main()
             }
 
             std::cout << "\n";
-            
+
             alive = false;
         }
 
 
-        else if (grid[uRow - 'a'][uColumn] != '*')  // No more magic numbers!
+        else if (grid[uRow - 97][uColumn] != '*')  // I think now
         {
-            
-            if (grid[uRow - 'a'][uColumn] == '.') // YOU ARE CHANGING THIS DUMASS *************************************************************************************************************************************
-            {
-                for (int x = uRow - 1; x < uRow + 2; x++)
-                {
-                    for (int y = uColumn - 1; y < uColumn + 2; y++)
-                    {
-                        if(x < 0 || x >= rows || y < 0 || y >= columns)
-                        {
-                            continue;
-                        }
 
-                        else
-                        {
-                            visibleGrid[x][y] = '.';
-                        }
-                    }
-                }
-            }
-
-            else
-
-            {
-                visibleGrid[uRow - 'a'][uColumn] = grid[uRow - 'a'][uColumn]; // If this index isn't a bomb it displays how many mines are around it.
-                iNeedACounter++;
-            }
+            visibleGrid[uRow - 97][uColumn] = grid[uRow - 97][uColumn];  // Making changes
+            iNeedACounter++;
 
             if (iNeedACounter == (columns * rows) - mines)
             {
@@ -282,8 +258,6 @@ int main()
             }
 
             iThinkINeedABoool = true;
-
-            // Would be cool to add somehting that empties the console so that it looks as if the grid was updating itself.
 
             for (size_t i = 0; i < rows; i++)
             {
@@ -343,29 +317,21 @@ int main()
 
                 std::cout << std::endl; // So far so good :)
 
-            } 
-            
+            }
+
         }
 
-      
+
     }
 
 
-  
+
 
 
     std::cout << "No more playing for you! Go touch some grass."; // I really dont want to do another loop, so no more playing.
     std::cout << "\n";
-    
+
     // I used IA to help me spot errors in my code, but not to fix them (at least so far).
-    
-
-} 
 
 
-        
-    
-
-
- 
-
+}

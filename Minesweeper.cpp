@@ -18,10 +18,10 @@ int main()
 
     do
     {
-        std::cout << "How many rows do you want the game to have (min 2, max 10): "; // If the user enters a char the game will break.
+        std::cout << "How many rows do you want the game to have (min 2, max 10). If you enter a character the program will break! : "; // If the user enters a char the game will break.
         std::cin >> rows;
 
-        std::cout << "How many columns do you want the game to have (min 2, max 10): "; // If the user enters a char the game will break.
+        std::cout << "How many columns do you want the game to have (min 2, max 10) If you enter a character the program will break!: "; // If the user enters a char the game will break.
         std::cin >> columns;
 
         do
@@ -71,7 +71,64 @@ int main()
         {
             grid[x][y] = '*'; 
             placedMines++;
+
+           
         }      
+
+    }
+
+	// Count how many mines are around each cell. 
+
+    int mineCount = 0;
+
+    for (int i = 0; i < rows; i++) // This will check for every index in the array // Add a read.txt me here for the teacher
+    {
+        mineCount = 0;
+
+        for (int j = 0; j < columns; j++) // Same
+        {
+            mineCount = 0;
+
+                for (int x = i -1; x < i + 2; x++) // Now makes more sense. So it will check (lets say i and j is 1) -> [0][1] [1][1] [2][1]
+                {
+                    for (int y = j - 1; y < j + 2; y++) // Same
+                    {
+                        if (grid[i][j] == '*') // This because we don't want to check if there are mines around mines, since if the user checks an index where there's a mine he'll die (not irl).
+
+                        {
+                            continue;
+                        }
+
+
+                        else
+                        {
+                            if (x < 0 || x >= rows || y < 0 || y >= columns)
+                            {
+                                continue;
+                            }
+                          
+                            else if (grid[x][y] == '*') // This is checking if indexs around the grid[i][j] are bombs (I Think). If x or y are out of bounds it won't do the counting.
+                            {
+                                                                                                       
+                                mineCount++;                                 
+
+                                // Now we gotta display this number when the user checks an index where there's no bomb.
+                            }                           
+                            
+                            
+
+                        }
+                    }
+                }
+
+                if (mineCount > 0)
+
+                {
+                    grid[i][j] = mineCount;
+                }
+            
+        }
+
 
     }
     

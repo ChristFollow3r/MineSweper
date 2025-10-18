@@ -284,6 +284,14 @@ int main()
             {
                 std::cout << "You win!";
                 std::cout << "\n";
+
+                for (size_t i = 0; i < rows; i++) // Print the grid for the user to see.
+                {
+                    for (size_t j = 0; j < columns; j++)
+                    {
+                        std::cout << grid[i][j];
+                    }
+                }
                 alive = false;
             }
 
@@ -366,9 +374,6 @@ int main()
 
 
     }
-
-
-
 
 
     std::cout << "No more playing for you! Go touch some grass."; // I really dont want to do another loop, so no more playing.

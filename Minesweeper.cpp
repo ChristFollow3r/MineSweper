@@ -200,7 +200,7 @@ int main()
     bool alive = true;
     int uColumn;
     char uRow;
-    int iNeedACounter = 0;
+    int revealedCells = 0; // So at first I was doing this counting how many mines (I dont even remember what I was doing, very weird) and chat gpt told me that it was prone to error cause the counter could be cheated, so im counting empty cells now.
 
     while (alive)
     {
@@ -230,7 +230,7 @@ int main()
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    if (grid[i][j] >= '1' &&  grid[i][j] <= '8') // I kinda did this on my own but chat gpt helped me a bit (I amde a super long if statemnt for every possible number and ussed || instead of &&):
+                    if (grid[i][j] >= '1' &&  grid[i][j] <= '8') // I kinda did this on my own but chat gpt helped me a bit (I made a super long if statemnt for every possible number and ussed || instead of &&):
                     {
                         grid[i][j] = '.';
                     }
@@ -245,13 +245,42 @@ int main()
         }
 
 
-        else if (grid[uRow - 'a'][uColumn] != '*')  // I think now
+        else if (grid[uRow - 'a'][uColumn] != '*') 
         {
 
-            visibleGrid[uRow - 'a'][uColumn] = grid[uRow - 'a'][uColumn];  // Making changes
-            iNeedACounter++;
+            if (grid[uRow - 'a'][uColumn] == '.')
 
-            if (iNeedACounter == (columns * rows) - mines)
+            {
+                for (int x = (uRow - 'a') - 1; x < (uRow - 'a') + 2; x++) // I did this on my own but forgot to subtract 'a' (chat gpt told me)
+                {
+                    if (x < 0 || x >= rows)
+                    {
+                        continue;
+                    }
+
+                    for (int y = uColumn - 1; y < uColumn + 2; y++)
+                    {
+                        if (y < 0 || y >= columns)
+                        {
+                            continue;
+                        }                     
+
+                        visibleGrid[x][y] = grid[x][y]; // *************************************************************************
+                                               
+                    }
+                }
+               
+            }
+
+            else if (visibleGrid[uRow - 'a'][uColumn] == '.')
+            {
+                std::cout << "You already checked that cell! ";
+            }
+
+            visibleGrid[uRow - 'a'][uColumn] = grid[uRow - 'a'][uColumn];  // Making changes
+            
+
+            if (revealedCells == (columns * rows) - mines)
             {
                 std::cout << "You win!";
                 std::cout << "\n";
@@ -314,6 +343,19 @@ int main()
                         continue;
                     }
                     std::cout << visibleGrid[i][j];
+                }
+
+                revealedCells = 0; // Aight so sir chat.gpt straight up told me to put this here cause im dumb. This will resset the counter everytime we check the visible grid, that way we don't mess up the counter.
+
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        if (visibleGrid[i][j] != '#')  //This will check every time inside the visible grid if a revelead cell is not a #, then add a counter to revealed cells. Once revealed cells is equal to (columns * rows) - mines, the player will win.
+                        {
+                            revealedCells++;
+                        }
+                    }
                 }
 
                 std::cout << std::endl; // So far so good :)

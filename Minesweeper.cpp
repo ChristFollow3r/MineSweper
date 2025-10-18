@@ -230,6 +230,10 @@ int main()
             {
                 for (int j = 0; j < columns; j++)
                 {
+                    if (grid[i][j] >= '1' &&  grid[i][j] <= '8') // I kinda did this on my own but chat gpt helped me a bit (I amde a super long if statemnt for every possible number and ussed || instead of &&):
+                    {
+                        grid[i][j] = '.';
+                    }
                     std::cout << grid[i][j];
                 }std::cout << "\n";
 

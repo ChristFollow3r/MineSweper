@@ -206,6 +206,7 @@ int main()
     {
         std::cout << "\n";
 
+
         do
         {
             std::cout << "Enter the column: ";
@@ -247,6 +248,7 @@ int main()
 
         else if (grid[uRow - 'a'][uColumn] != '*') 
         {
+            system("CLS");
 
             if (grid[uRow - 'a'][uColumn] == '.')
 
@@ -290,7 +292,7 @@ int main()
                     for (size_t j = 0; j < columns; j++)
                     {
                         std::cout << grid[i][j];
-                    }
+                    }std::cout << "\n";
                 }
                 alive = false;
             }
@@ -369,7 +371,7 @@ int main()
                 std::cout << std::endl; // So far so good :)
 
             }
-
+            
         }
 
 

@@ -380,7 +380,7 @@ int main()
     std::cout << "No more playing for you! Go touch some grass."; // I really dont want to do another loop, so no more playing.
     std::cout << "\n";
 
-    // I used IA to help me spot errors in my code, but not to fix them (at least so far).
+    // I used AI to help me spot errors in my code, but not to fix them (at least so far).
 
 
 }
